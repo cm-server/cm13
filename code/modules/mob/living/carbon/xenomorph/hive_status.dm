@@ -30,10 +30,7 @@
 /datum/hive_status_ui/proc/update_xeno_counts(send_update = TRUE)
 	xeno_counts = assoc_hive.get_xeno_counts()
 
-	total_xenos = 0
-	for(var/counts in xeno_counts)
-		for(var/caste in counts)
-			total_xenos += counts[caste]
+	total_xenos = assoc_hive.totalXenos.len
 
 	if(send_update)
 		SStgui.update_uis(src)
@@ -59,23 +56,6 @@
 
 	if(send_update)
 		SStgui.update_uis(src)
-
-// Mildly related to the above, but only for when xenos are removed from the hive
-// If a xeno dies, we don't have to regenerate all xeno info and sort it again, just remove them from the data list
-/datum/hive_status_ui/proc/xeno_removed(var/mob/living/carbon/Xenomorph/X)
-	if(!xeno_keys)
-		return
-
-	for(var/index in 1 to length(xeno_keys))
-		var/list/info = xeno_keys[index]
-		if(info["nicknumber"] == X.nicknumber)
-
-			// tried Remove(), didn't work. *shrug*
-			xeno_keys[index] = null
-			xeno_keys -= null
-			return
-
-	SStgui.update_uis(src)
 
 // Updates the list of xeno names, strains and references
 /datum/hive_status_ui/proc/update_xeno_info(send_update = TRUE)
@@ -129,9 +109,23 @@
 	.["total_xenos"] = total_xenos
 	.["xeno_counts"] = xeno_counts
 	.["tier_slots"] = tier_slots
-	.["xeno_keys"] = xeno_keys
-	.["xeno_info"] = xeno_info
-	.["xeno_vitals"] = xeno_vitals
+
+	// Key info
+	.["xeno_nicknumbers"] = xeno_keys["nicknumber"]
+	.["xeno_is_leader"] = xeno_keys["is_leader"]
+	.["xeno_is_queen"] = xeno_keys["is_queen"]
+	.["xeno_caste_names"] = xeno_keys["caste_name"]
+
+	// Info
+	.["xeno_names"] = xeno_info["name"]
+	.["xeno_strains"] = xeno_info["strain"]
+	.["xeno_refs"] = xeno_info["ref"]
+
+	// Vitals
+	.["xeno_health"] = xeno_vitals["health"]
+	.["xeno_areas"] = xeno_vitals["area"]
+	.["xeno_is_ssd"] = xeno_vitals["is_ssd"]
+
 	.["queen_location"] = get_area_name(assoc_hive.living_xeno_queen)
 	.["hive_location"] = hive_location
 	.["pooled_larva"] = pooled_larva

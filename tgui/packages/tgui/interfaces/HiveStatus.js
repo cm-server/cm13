@@ -15,27 +15,27 @@ const redFont = {
  */
 const filterXenos = data => {
   const {
-    searchKey, searchFilters,
-    maxHealth, xeno_keys,
-    xeno_vitals, xeno_info,
+    searchKey, searchFilters, maxHealth, total_xenos,
+    xeno_nicknumbers, xeno_is_leader, xeno_is_queen,
+    xeno_names, xeno_strains, xeno_refs,
+    xeno_health, xeno_areas, xeno_is_ssd,
   } = data;
   const xeno_entries = [];
 
-  xeno_keys.map((key, i) => {
-    const nicknumber = key.nicknumber.toString();
+  for(let i = 0; i < total_xenos; i++) {
     let entry = {
-      nicknumber: nicknumber,
-      name: xeno_info[nicknumber].name,
-      strain: xeno_info[nicknumber].strain,
-      location: xeno_vitals[nicknumber].area,
-      health: xeno_vitals[nicknumber].health,
-      ref: xeno_info[nicknumber].ref,
-      is_ssd: xeno_vitals[nicknumber].is_ssd,
-      is_leader: key.is_leader,
-      is_queen: key.is_queen,
+      nicknumber: xeno_nicknumbers[i],
+      name: xeno_names[i],
+      strain: xeno_strains[i],
+      location: xeno_areas[i],
+      health: xeno_health[i],
+      ref: xeno_refs[i],
+      is_ssd: xeno_is_ssd[i],
+      is_leader: xeno_is_leader[i],
+      is_queen: xeno_is_queen[i],
     };
     xeno_entries.push(entry);
-  });
+  }
 
   const filter_params = {
     searchKey: searchKey,
@@ -267,17 +267,26 @@ const XenoList = (props, context) => {
   const [searchFilters, setSearchFilters] = useLocalState(context, 'searchFilters', { name: true, strain: true, location: true });
   const [maxHealth, setMaxHealth] = useLocalState(context, 'maxHealth', 100);
   const {
-    xeno_keys, xeno_vitals,
-    xeno_info, user_ref,
-    is_in_ovi, hive_color,
+    xeno_nicknumbers, xeno_is_leader, xeno_is_queen,
+    xeno_names, xeno_strains, xeno_refs,
+    xeno_health, xeno_areas, xeno_is_ssd,
+    user_ref, is_in_ovi, hive_color,
+    total_xenos,
   } = data;
   const xeno_entries = filterXenos({
     searchKey: searchKey,
     searchFilters: searchFilters,
     maxHealth: maxHealth,
-    xeno_keys: xeno_keys,
-    xeno_vitals: xeno_vitals,
-    xeno_info: xeno_info,
+    xeno_nicknumbers: xeno_nicknumbers,
+    xeno_is_leader: xeno_is_leader,
+    xeno_is_queen: xeno_is_queen,
+    xeno_names: xeno_names,
+    xeno_strains: xeno_strains,
+    xeno_refs: xeno_refs,
+    xeno_health: xeno_health,
+    xeno_areas: xeno_areas,
+    xeno_is_ssd: xeno_is_ssd,
+    total_xenos: total_xenos,
   });
 
   return (
