@@ -22,7 +22,7 @@ const filterXenos = data => {
   } = data;
   const xeno_entries = [];
 
-  for(let i = 0; i < total_xenos; i++) {
+  for (let i = 0; i < total_xenos; i++) {
     let entry = {
       nicknumber: xeno_nicknumbers[i],
       name: xeno_names[i],
