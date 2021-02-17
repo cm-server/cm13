@@ -272,15 +272,37 @@
 	if(X.hud_list)
 		X.hud_update()
 
-	if(!is_admin_level(X.z))
-		totalXenos += X
-		if(X.tier == 2)
-			tier_2_xenos += X
-		else if(X.tier == 3)
-			tier_3_xenos += X
+	if(is_admin_level(X.z))
+		return
 
-	// Xenos are a fuckfest of cross-dependencies of different datums that are initialized at different times
-	// So don't even bother trying updating UI here without large refactors
+	// Handle insertion of xenos into totalXenos (to maintain sort)
+	// Queen is placed at the forefront
+	if(living_xeno_queen == X)
+		totalXenos.Insert(1, X)
+	else
+		var/insert_point = 1
+		for(var/i in 2 to totalXenos.len+1)
+			insert_point = i
+			if(i > totalXenos.len)
+				break
+
+			var/mob/living/carbon/Xenomorph/current = totalXenos[i]
+			if(IS_XENO_LEADER(current) && !IS_XENO_LEADER(X))
+				continue
+			if(IS_XENO_LEADER(X) && !IS_XENO_LEADER(current))
+				break
+			if(X.tier > current.tier)
+				break
+			if(X.tier < current.tier || X.caste_name > current.caste_name)
+				continue
+			break
+		totalXenos.Insert(insert_point, X)
+	hive_ui.update_all_xeno_data()
+
+	if(X.tier == 2)
+		tier_2_xenos += X
+	else if(X.tier == 3)
+		tier_3_xenos += X
 
 // Removes the xeno from the hive
 /datum/hive_status/proc/remove_xeno(var/mob/living/carbon/Xenomorph/X, var/hard=FALSE)
@@ -314,8 +336,7 @@
 		tier_3_xenos -= X
 
 	// At least UI updates when xenos are removed are safe
-	hive_ui.update_xeno_counts()
-	hive_ui.xeno_removed(X)
+	hive_ui.update_all_xeno_data()
 
 /datum/hive_status/proc/set_living_xeno_queen(var/mob/living/carbon/Xenomorph/Queen/M)
 	if(M == null)
@@ -370,7 +391,8 @@
 	xeno.hud_update() // To add leader star
 	open_xeno_leader_positions -= leader_num
 
-	hive_ui.update_xeno_keys()
+	sort_xenos_list()
+	hive_ui.update_all_xeno_data()
 	return TRUE
 
 /datum/hive_status/proc/remove_hive_leader(var/mob/living/carbon/Xenomorph/xeno)
@@ -390,7 +412,8 @@
 			open_xeno_leader_positions.Insert(i, leader_num)
 			break
 
-	hive_ui.update_xeno_keys()
+	sort_xenos_list()
+	hive_ui.update_all_xeno_data()
 	return TRUE
 
 /datum/hive_status/proc/replace_hive_leader(var/mob/living/carbon/Xenomorph/original, var/mob/living/carbon/Xenomorph/replacement)
@@ -409,7 +432,8 @@
 	replacement.handle_xeno_leader_pheromones()
 	replacement.hud_update() // To add leader star
 
-	hive_ui.update_xeno_keys()
+	sort_xenos_list()
+	hive_ui.update_all_xeno_data()
 
 /datum/hive_status/proc/handle_xeno_leader_pheromones()
 	for(var/mob/living/carbon/Xenomorph/L in xeno_leader_list)
@@ -444,89 +468,75 @@
 // The idea is that we sort this list, and use it as a "key" for all the other information (especially the nicknumber)
 // in the hive status UI. That way we can minimize the amount of sorts performed by only calling this when xenos are created/disposed
 /datum/hive_status/proc/get_xeno_keys()
-	var/list/xenos[totalXenos.len]
+	. = list(
+		"nicknumber" = list(),
+		"is_leader" = list(),
+		"is_queen" = list(),
+	)
 
-	var/index = 1
-	var/useless_slots = 0
+	// totalXenos should be sorted
 	for(var/mob/living/carbon/Xenomorph/X in totalXenos)
 		if(is_admin_level(X.z))
-			useless_slots++
 			continue
 
-		// Insert without doing list merging
-		xenos[index++] = list(
-			"nicknumber" = X.nicknumber,
-			"tier" = X.tier, // This one is only important for sorting
-			"is_leader" = (IS_XENO_LEADER(X)),
-			"is_queen" = istype(X.caste, /datum/caste_datum/queen),
-			"caste_name" = X.caste_name
-		)
-
-	// Clear nulls from the xenos list
-	xenos.len -= useless_slots
-
-	// Make it all nice and fancy by sorting the list before returning it
-	var/list/sorted_keys = sort_xeno_keys(xenos)
-	if(length(sorted_keys))
-		return sorted_keys
-	return xenos
+		.["nicknumber"] += X.nicknumber
+		.["is_leader"] += (IS_XENO_LEADER(X))
+		.["is_queen"] += istype(X.caste, /datum/caste_datum/queen)
 
 // This sorts the xeno info list by multiple criteria. Prioritized in order:
 // 1. Queen
 // 2. Leaders
 // 3. Tier
 // It uses a slightly modified insertion sort to accomplish this
-/datum/hive_status/proc/sort_xeno_keys(var/list/xenos)
-	if(!length(xenos))
+/datum/hive_status/proc/sort_xenos_list()
+	if(!length(totalXenos))
 		return
 
-	var/list/sorted_list = xenos.Copy()
-
-	if(!length(sorted_list))
-		return
-
-	for(var/index in 2 to length(sorted_list))
+	for(var/index in 2 to length(totalXenos))
 		var/j = index
 
 		while(j > 1)
-			var/current = sorted_list[j]
-			var/prev = sorted_list[j-1]
+			var/mob/living/carbon/Xenomorph/current = totalXenos[j]
+			var/mob/living/carbon/Xenomorph/prev = totalXenos[j-1]
 
 			// Queen comes first, always
-			if(current["is_queen"])
-				sorted_list.Swap(j-1, j)
+			if(current == living_xeno_queen)
+				totalXenos.Swap(j-1, j)
 				j--
 				continue
 
 			// don't muck up queen's slot
-			if(prev["is_queen"])
-				j--
-				continue
+			if(prev == living_xeno_queen)
+				break
 
 			// Leaders before normal xenos
-			if(!prev["is_leader"] && current["is_leader"])
-				sorted_list.Swap(j-1, j)
+			if(!IS_XENO_LEADER(prev) && IS_XENO_LEADER(current))
+				totalXenos.Swap(j-1, j)
 				j--
 				continue
+			if(IS_XENO_LEADER(prev) && !IS_XENO_LEADER(current))
+				break
 
 			// Make sure we're only comparing leaders to leaders and non-leaders to non-leaders when sorting
 			// This means we get leaders sorted first, then non-leaders sorted
 			// Sort by tier first, higher tiers over lower tiers, and then by name alphabetically
+			if(prev.tier > current.tier)
+				break
+			if(prev.tier < current.tier || prev.caste_name > current.caste_name)
+				totalXenos.Swap(j-1, j)
+				j--
+			else
+				break
 
-			// Could not think of an elegant way to write this
-			if(!(current["is_leader"]^prev["is_leader"])\
-				&& (prev["tier"] < current["tier"]\
-				|| prev["tier"] == current["tier"] && prev["caste_name"] > current["caste_name"]\
-			))
-				sorted_list.Swap(j-1, j)
-
-			j--
-
-	return sorted_list
+	return totalXenos
 
 // Returns a list with some more info about all xenos in the hive
 /datum/hive_status/proc/get_xeno_info()
-	var/list/xenos = list()
+	. = list(
+		"name" = list(),
+		"strain" = list(),
+		"ref" = list(),
+	)
 
 	for(var/mob/living/carbon/Xenomorph/X in totalXenos)
 		if(is_admin_level(X.z))
@@ -537,13 +547,10 @@
 		// its name updates with its icon, unlike other castes which only update the mature/elder, etc. prefix on evolve
 		if(istype(X, /mob/living/carbon/Xenomorph/Larva))
 			xeno_name = "Larva ([X.nicknumber])"
-		xenos["[X.nicknumber]"] = list(
-			"name" = xeno_name,
-			"strain" = X.mutation_type,
-			"ref" = "\ref[X]"
-		)
 
-	return xenos
+		.["name"] += xeno_name
+		.["strain"] += X.mutation_type
+		.["ref"] += "\ref[X]"
 
 /datum/hive_status/proc/set_hive_location(var/obj/effect/alien/resin/special/pylon/core/C)
 	if(!C || C == hive_location)
@@ -555,13 +562,14 @@
 
 // Returns a list of xeno healths and locations
 /datum/hive_status/proc/get_xeno_vitals()
-	var/list/xenos = list()
+	. = list(
+		"health" = list(),
+		"area" = list(),
+		"is_ssd" = list(),
+	)
 
 	for(var/mob/living/carbon/Xenomorph/X in totalXenos)
 		if(is_admin_level(X.z))
-			continue
-
-		if(!(X in GLOB.living_xeno_list))
 			continue
 
 		var/area/A = get_area(X)
@@ -569,13 +577,9 @@
 		if(A)
 			area_name = A.name
 
-		xenos["[X.nicknumber]"] = list(
-			"health" = round((X.health / X.maxHealth) * 100, 1),
-			"area" = area_name,
-			"is_ssd" = (!X.client)
-		)
-
-	return xenos
+		.["health"] += round((X.health / X.maxHealth) * 100, 1)
+		.["area"] += area_name
+		.["is_ssd"] += (!X.client)
 
 #define TIER_3 "3"
 #define TIER_2 "2"
