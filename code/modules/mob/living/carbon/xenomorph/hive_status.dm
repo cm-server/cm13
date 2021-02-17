@@ -30,12 +30,15 @@
 /datum/hive_status_ui/proc/update_xeno_counts(send_update = TRUE)
 	xeno_counts = assoc_hive.get_xeno_counts()
 
-	total_xenos = assoc_hive.totalXenos.len
+	total_xenos = 0
+	for(var/counts in xeno_counts)
+		for(var/caste in counts)
+			total_xenos += counts[caste]
+
+	xeno_counts[1] -= "Queen" // don't show queen in the amount of xenos
 
 	if(send_update)
 		SStgui.update_uis(src)
-
-	xeno_counts[1] -= "Queen" // don't show queen in the amount of xenos
 
 	// Also update the amount of T2/T3 slots
 	tier_slots = assoc_hive.get_tier_slots()
