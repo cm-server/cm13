@@ -162,8 +162,6 @@
 
 
 /obj/item/weapon/gun/energy/plasmarifle/examine(mob/user)
-	if(ishuman(user))
-		..()
 		to_chat(user, "It currently has [charge_time] / 100 charge.")
 
 /obj/item/weapon/gun/energy/plasmarifle/update_icon()
@@ -173,18 +171,7 @@
 		last_regen = charge_time
 
 /obj/item/weapon/gun/energy/plasmarifle/unique_action(mob/user)
-	if(!ishuman(user))
-		to_chat(user, SPAN_WARNING("You have no idea how this thing works!"))
-		return
-	..()
 	zoom(user)
-
-/obj/item/weapon/gun/energy/plasmarifle/able_to_fire(mob/user)
-	if(!ishuman(user))
-		to_chat(user, SPAN_WARNING("You have no idea how this thing works!"))
-		return
-
-	return ..()
 
 /obj/item/weapon/gun/energy/plasmarifle/load_into_chamber()
 	ammo = GLOB.ammo_list[charge_time < 15? /datum/ammo/energy/yautja/rifle/bolt : /datum/ammo/energy/yautja/rifle/blast]
@@ -286,17 +273,7 @@
 
 
 /obj/item/weapon/gun/energy/plasmapistol/examine(mob/user)
-	if(ishuman(user))
-		..()
 		to_chat(user, "It currently has [charge_time] / 40 charge.")
-
-
-/obj/item/weapon/gun/energy/plasmapistol/able_to_fire(mob/user)
-	if(!ishuman(user))
-		to_chat(user, SPAN_WARNING("You have no idea how this thing works!"))
-		return
-	else
-		return ..()
 
 /obj/item/weapon/gun/energy/plasmapistol/load_into_chamber()
 	if(charge_time < 1) return
