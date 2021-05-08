@@ -191,9 +191,6 @@
 	return 1
 
 /obj/item/weapon/gun/energy/plasmarifle/attack_self(mob/living/user)
-	if(!ishuman(user))
-		return ..()
-
 	if(charge_time > 10)
 		user.visible_message(SPAN_NOTICE("You feel a strange surge of energy in the area."),SPAN_NOTICE("You release the rifle battery's energy."))
 		var/obj/item/clothing/gloves/yautja/Y = user:gloves
