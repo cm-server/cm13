@@ -515,7 +515,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		return
 
 	var/list/minimaps = list()
-	for(var/datum/game_mape/M as anything in SSminimap.minimaps)
+	for(var/datum/game_map/M as anything in SSminimap.minimaps)
 		minimaps[M.name] = M
 
 	var/result = tgui_input_list(usr, "Select map", "Select map", minimaps)
