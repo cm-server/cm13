@@ -6,4 +6,7 @@
 #define IS_OPAQUE_TURF(turf) (turf.directional_opacity == ALL_CARDINALS)
 
 /// Marks a turf as organic. Used for alien wall and membranes.
-#define TURF_ORGANIC				(1<<0)
+#define TURF_ORGANIC (1<<0)
+
+/// Hides a turf on the minimap
+#define TURF_MINIMAP_HIDE (1<<1)

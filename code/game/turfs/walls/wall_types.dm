@@ -220,6 +220,7 @@
 	name = "wall"
 	icon = 'icons/turf/walls/walls.dmi'
 	icon_state = "riveted"
+	flags_turf = TURF_MINIMAP_HIDE
 	opacity = 1
 	hull = 1
 

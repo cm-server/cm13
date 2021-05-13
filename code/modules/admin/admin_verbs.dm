@@ -89,6 +89,7 @@ var/list/admin_verbs_debug = list(
 	/client/proc/debug_role_authority,
 	/client/proc/cmd_debug_make_powernets,
 	/client/proc/cmd_debug_list_processing_items,
+	/client/proc/generate_minimaps,
 	/client/proc/cmd_admin_delete,
 	/client/proc/cmd_debug_del_all,
 	/client/proc/reload_admins,

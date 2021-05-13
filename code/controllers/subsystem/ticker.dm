@@ -250,7 +250,7 @@ SUBSYSTEM_DEF(ticker)
 	mode.post_setup()
 
 	// Switch back to default automatically
-	save_mode(CONFIG_GET(string/gamemode_default))
+	//save_mode(CONFIG_GET(string/gamemode_default))
 
 	if(round_statistics)
 		to_chat_spaced(world, html = FONT_SIZE_BIG(SPAN_ROLE_BODY("<B>Welcome to [round_statistics.name]</B>")))
