@@ -349,7 +349,7 @@ GLOBAL_LIST_INIT(t3_ais, list(
 		var/list/spawners_nearby = list()
 		var/amount_to_spawn = Ceiling(length(xenos_to_spawn)/length(groups))
 
-		for(var/xa in GLOB.xeno_ai_spawns)
+		for(var/xa in possible_spawners)
 			var/obj/effect/landmark/xeno_ai/XA = xa
 			if(XA.remaining_spawns <= 0 || length(XA.spawned_xenos) > XA.remaining_spawns)
 				continue
