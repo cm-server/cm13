@@ -9,3 +9,5 @@
 	var/mob/living/carbon/Xenomorph/Queen/X = new(spawn_loc)
 	X.maxHealth = max(X.maxHealth * (length(GLOB.alive_client_human_list) / boss_health_scale_per_player), X.maxHealth)
 	X.health = X.maxHealth
+
+	return X
