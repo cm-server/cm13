@@ -173,12 +173,15 @@ GLOBAL_LIST_INIT(jobs_to_icon, list(
 	.["map_name"] = name
 	.["icon_size"] = icon_size
 
-/datum/game_map/tgui_interact(mob/user, datum/tgui/ui)
+/datum/game_map/tgui_interact(mob/user, datum/tgui/ui, map = FALSE)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "Minimap", "Minimap")
+		if(map)
+			ui = new(user, src, "Map", "Map")
+		else
+			ui = new(user, src, "Minimap", "Minimap")
+			RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/update_ui_wrapper, TRUE)
 		ui.open()
-		RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/update_ui_wrapper, TRUE)
 
 /datum/game_map/ui_close(mob/user)
 	UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
@@ -187,6 +190,27 @@ GLOBAL_LIST_INIT(jobs_to_icon, list(
 /datum/game_map/proc/update_ui_wrapper(var/mob/M)
 	SIGNAL_HANDLER
 	SStgui.try_update_ui(M, src)
+
+/mob/dead/observer/verb/view_map()
+	set name = "View Current Map"
+	set category = "Ghost"
+
+	var/datum/game_map/target_map
+	var/turf/T = get_turf(loc)
+	if(!T)
+		to_chat(usr, SPAN_NOTICE("[icon2html(src)] Unable to determine your current location!"))
+		return
+
+	for(var/datum/game_map/potential_map as anything in SSminimap.minimaps)
+		if(potential_map.zlevel.z_value == T.z)
+			target_map = potential_map
+			break
+
+	if(!target_map)
+		to_chat(usr, SPAN_NOTICE("[icon2html(src)] Unable to find a map for the current area you are in!"))
+		return
+
+	target_map.tgui_interact(usr, map=TRUE)
 
 
 #undef BOUND_MIN_X

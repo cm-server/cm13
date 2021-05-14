@@ -52,6 +52,7 @@ export const Minimap = (props, context) => {
       width={icon_size*player_viewsize + minimapPadding*2}
       height={icon_size*player_viewsize + minimapPadding*2 + 30}
       theme="engi"
+      resizable={false}
     >
       <Window.Content id="minimap">
         <Stack>

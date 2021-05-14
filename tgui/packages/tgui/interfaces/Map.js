@@ -1,12 +1,19 @@
 import { useBackend, useLocalState } from '../backend';
+import { Stack, Icon, Box } from '../components';
 import { Window } from '../layouts';
 
 export const Map = (props, context) => {
   const { data } = useBackend(context);
-  const { map_name, map_size_x, map_size_y } = data;
+  const {
+    map_name,
+    map_size_x,
+    map_size_y,
+    coord_data,
+    icon_size,
+  } = data;
 
   const [isScrolling, setScrolling] = useLocalState(context, "is_scrolling", false);
-
+  const [selectedName, setSelectedName] = useLocalState(context, "selected_name", null);
   const [lastMousePos, setLastMousePos] = useLocalState(context, "last_mouse_pos", null);
 
   const startDragging = e => {
@@ -20,6 +27,7 @@ export const Map = (props, context) => {
 
   const doDrag = e => {
     if (isScrolling) {
+      e.preventDefault();
       const { screenX, screenY } = e;
       const element = document.getElementById("minimap");
       if (lastMousePos) {
@@ -30,23 +38,10 @@ export const Map = (props, context) => {
     }
   };
 
-  const globalToLocal = coord => {
-    const element = document.getElementById("minimap");
-    const newCoord = [];
-    newCoord[0] = (coord[0])*icon_size + element.scrollTop;
-    newCoord[1] = (map_size_y-coord[1]*icon_size) + element.scrollLeft;
-
-    if (newCoord[0] < 0 || newCoord[0] > icon_size*player_viewsize
-      || newCoord[1] < 0 || newCoord[1] > icon_size*player_viewsize) {
-      return null;
-    }
-    return newCoord;
-  };
-
   return (
     <Window
-      width={icon_size*player_viewsize + 25}
-      height={icon_size*player_viewsize + 50}
+      width={600}
+      height={600}
       theme="engi"
     >
       <Window.Content id="minimap">
@@ -57,24 +52,26 @@ export const Map = (props, context) => {
               style={{
                 'background-image': `url('minimap.${map_name}.png')`,
                 'background-repeat': "no-repeat",
-                'background-position-x': `${background_loc[0]}px`,
-                'background-position-y': `${background_loc[1]}px`,
-                'width': `${icon_size*player_viewsize}px`,
-                'height': `${icon_size*player_viewsize}px`,
+                'width': `${map_size_x}px`,
+                'height': `${map_size_y}px`,
               }}
+              position="absolute"
+              left="5px"
+              top="5px"
               onClick={() => setSelectedName(null)}
               onMouseDown={startDragging}
               onMouseUp={stopDragging}
               onMouseMove={doDrag}
             >
               {coord_data.map(val => {
-                const local_coord = globalToLocal(object_coord);
-                if (!local_coord) return;
                 return (
                   <Object
                     key={val.ref}
                     name={val.name}
-                    coord={local_coord}
+                    coord={[
+                      val.coord[0]*icon_size,
+                      (map_size_y/icon_size-val.coord[1])*icon_size,
+                    ]}
                     icon={val.icon}
                     color={val.color}
                     obj_ref={val.ref}
@@ -123,8 +120,8 @@ export const Object = (props, context) => {
       }}
       {...rest}
       position="absolute"
-      left={`${coord[0]+icon_size/2}px`}
-      top={`${coord[1]+icon_size-((obj_height-1)*icon_size)}px`}
+      left={`${coord[0]-icon_size}px`}
+      top={`${coord[1]-((obj_height-1)*icon_size)}px`}
     >
       <Stack vertical fill>
         <Stack.Item>

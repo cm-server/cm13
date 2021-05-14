@@ -28,6 +28,10 @@ $move-speed: 0.3s !default;
 .Minimap__InfoBox {
   transition: all 150ms ease-out;
   z-index: 2;
+
+  ::selection {
+    background-color: transparent;
+  }
 }
 
 .Minimap__InfoBox--detailed {
