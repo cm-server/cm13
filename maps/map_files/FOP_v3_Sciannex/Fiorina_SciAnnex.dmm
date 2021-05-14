@@ -9777,11 +9777,6 @@
 	pixel_x = -2;
 	pixel_y = 11
 	},
-/obj/item/golden_cup{
-	desc = "A sign of hunger for water. What idiot decided this was a good idea?";
-	pixel_x = 6;
-	pixel_y = 2
-	},
 /turf/open/floor/prison{
 	icon_state = "darkpurplefull2";
 	tag = "icon-darkpurplefull2"
@@ -17310,7 +17305,6 @@
 /area/fiorina/station/medbay)
 "kvd" = (
 /obj/structure/surface/table/reinforced/prison,
-/obj/item/golden_cup,
 /turf/open/floor/prison{
 	icon_state = "floor_plate";
 	tag = "icon-floor_plate"
@@ -21191,7 +21185,6 @@
 	},
 /area/fiorina/station/botany)
 "mOr" = (
-/obj/item/poster/propaganda,
 /turf/open/floor/prison{
 	dir = 9;
 	icon_state = "whitepurple"
@@ -26531,7 +26524,6 @@
 /turf/open/floor/prison,
 /area/fiorina/tumor/servers)
 "qgC" = (
-/obj/item/golden_cup,
 /turf/open/space,
 /area/fiorina/oob)
 "qgS" = (
@@ -26849,7 +26841,6 @@
 	},
 /obj/structure/surface/rack,
 /obj/item/poster,
-/obj/item/poster/propaganda,
 /turf/open/floor/prison{
 	dir = 1;
 	icon_state = "darkyellow2"
@@ -34309,7 +34300,6 @@
 	},
 /area/fiorina/station/botany)
 "uSo" = (
-/obj/item/poster/propaganda,
 /turf/open/floor/prison{
 	icon_state = "floor_plate";
 	tag = "icon-floor_plate"

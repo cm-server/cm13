@@ -3666,7 +3666,6 @@
 	dir = 4
 	},
 /obj/structure/surface/table/reinforced/prison,
-/obj/item/device/mass_spectrometer,
 /obj/item/device/matter_decompiler,
 /turf/open/floor/strata{
 	dir = 10;

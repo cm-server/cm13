@@ -20807,8 +20807,6 @@
 /area/almayer/shipboard/brig)
 "bnj" = (
 /obj/structure/surface/table/almayer,
-/obj/item/device/mass_spectrometer,
-/obj/item/device/mass_spectrometer,
 /obj/item/reagent_container/dropper,
 /obj/item/reagent_container/dropper,
 /obj/item/reagent_container/dropper,

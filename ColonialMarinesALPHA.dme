@@ -1269,6 +1269,7 @@
 #include "code\modules\cm_loot\loot\ammo.dm"
 #include "code\modules\cm_loot\loot\medical.dm"
 #include "code\modules\cm_loot\loot\utility.dm"
+#include "code\modules\cm_loot\loot\yautja.dm"
 #include "code\modules\cm_loot\loot\weapons\variants.dm"
 #include "code\modules\cm_loot\loot\weapons\weapons.dm"
 #include "code\modules\cm_marines\anti_air.dm"
