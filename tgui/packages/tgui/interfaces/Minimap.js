@@ -17,6 +17,8 @@ export const Minimap = (props, context) => {
 
   const [selectedName, setSelectedName] = useLocalState(context, "selected_name", null);
 
+  const minimapPadding = 10;
+
   const map_size_tile_x = (map_size_x/icon_size);
   const map_size_tile_y = (map_size_y/icon_size);
 
@@ -47,12 +49,12 @@ export const Minimap = (props, context) => {
 
   return (
     <Window
-      width={icon_size*player_viewsize + 25}
-      height={icon_size*player_viewsize + 50}
+      width={icon_size*player_viewsize + minimapPadding*2}
+      height={icon_size*player_viewsize + minimapPadding*2 + 30}
       theme="engi"
     >
       <Window.Content id="minimap">
-        <Stack justify="space-around">
+        <Stack>
           <Stack.Item>
             <Box
               className="Minimap__Map"
@@ -64,6 +66,9 @@ export const Minimap = (props, context) => {
                 'width': `${icon_size*player_viewsize}px`,
                 'height': `${icon_size*player_viewsize}px`,
               }}
+              position="absolute"
+              left={`${minimapPadding}px`}
+              top={`${minimapPadding}px`}
               onClick={() => setSelectedName(null)}
             >
               {coord_data.map(val => {
@@ -124,8 +129,8 @@ export const Object = (props, context) => {
       }}
       {...rest}
       position="absolute"
-      left={`${coord[0]+icon_size/2}px`}
-      top={`${coord[1]+icon_size-((obj_height-1)*icon_size)}px`}
+      left={`${coord[0]-icon_size}px`}
+      top={`${coord[1]-((obj_height-1)*icon_size)}px`}
     >
       <Stack vertical fill>
         <Stack.Item>
