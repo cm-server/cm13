@@ -388,7 +388,6 @@
 /turf/open/floor/plating,
 /area/corsat/inaccessible)
 "fT" = (
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/ice,
 /area/corsat/sigma/biodome/scrapyard)
 "fX" = (
@@ -574,7 +573,6 @@
 "iL" = (
 /obj/structure/surface/table/almayer,
 /obj/item/folder/black_random,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	dir = 8;
 	icon_state = "red"
@@ -624,7 +622,6 @@
 	})
 "jy" = (
 /obj/effect/decal/cleanable/blood/splatter,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor{
 	dir = 1;
 	icon_state = "asteroidfloor";
@@ -829,7 +826,6 @@
 	temperature = 223
 	})
 "mU" = (
-/obj/effect/landmark/objective_landmark/medium,
 /obj/structure/surface/rack,
 /obj/item/clothing/suit/storage/snow_suit,
 /obj/item/clothing/suit/storage/snow_suit,
@@ -996,7 +992,6 @@
 	})
 "pC" = (
 /obj/structure/filingcabinet/filingcabinet,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	dir = 4;
 	icon_state = "red"
@@ -1235,7 +1230,6 @@
 "us" = (
 /obj/structure/surface/table/almayer,
 /obj/item/device/flashlight,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	dir = 6;
 	icon_state = "red"
@@ -1787,7 +1781,6 @@
 /obj/structure/surface/table/almayer,
 /obj/item/explosive/grenade/incendiary,
 /obj/item/explosive/grenade/incendiary,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor{
 	icon_state = "asteroidplating";
 	tag = "icon-asteroidplating"
@@ -1797,7 +1790,6 @@
 /obj/structure/surface/table/almayer,
 /obj/item/explosive/grenade/smokebomb,
 /obj/item/explosive/grenade/smokebomb,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor{
 	icon_state = "asteroidplating";
 	tag = "icon-asteroidplating"
@@ -1848,7 +1840,6 @@
 /obj/structure/surface/table/almayer,
 /obj/item/explosive/grenade/HE,
 /obj/item/explosive/grenade/HE,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor{
 	icon_state = "asteroidplating";
 	tag = "icon-asteroidplating"
@@ -1864,7 +1855,6 @@
 /obj/structure/surface/table/almayer,
 /obj/item/explosive/grenade/HE/training,
 /obj/item/explosive/grenade/HE/training,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor{
 	icon_state = "asteroidplating";
 	tag = "icon-asteroidplating"
@@ -1887,14 +1877,12 @@
 /area/corsat/sigma/biodome/gunrange)
 "Dp" = (
 /obj/structure/closet/wardrobe/atmospherics_yellow,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	dir = 9;
 	icon_state = "yellow"
 	},
 /area/corsat/sigma/airlock/control)
 "Ds" = (
-/obj/effect/landmark/objective_landmark/medium,
 /obj/structure/surface/rack,
 /obj/item/clothing/shoes/snow,
 /obj/item/clothing/shoes/snow,
@@ -2007,7 +1995,6 @@
 /obj/structure/surface/table/almayer,
 /obj/item/explosive/grenade/flashbang,
 /obj/item/explosive/grenade/flashbang,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor{
 	icon_state = "asteroidplating";
 	tag = "icon-asteroidplating"
@@ -2016,7 +2003,6 @@
 "Fu" = (
 /obj/structure/surface/table/almayer,
 /obj/item/explosive/grenade/HE/training,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor{
 	icon_state = "asteroidplating";
 	tag = "icon-asteroidplating"
@@ -2083,7 +2069,6 @@
 /obj/structure/surface/table/almayer,
 /obj/item/explosive/grenade/HE/frag,
 /obj/item/explosive/grenade/HE/frag,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor{
 	icon_state = "asteroidplating";
 	tag = "icon-asteroidplating"
@@ -2112,7 +2097,6 @@
 	start_charge = 0
 	},
 /obj/structure/closet/wardrobe/atmospherics_yellow,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	dir = 8;
 	icon_state = "yellow"
@@ -2132,7 +2116,6 @@
 "GW" = (
 /obj/structure/surface/table/almayer,
 /obj/effect/spawner/random/technology_scanner,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	icon_state = "plate"
 	},
@@ -2222,7 +2205,6 @@
 	},
 /area/corsat/sigma/airlock/control)
 "Iw" = (
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/auto_turf/snow/layer2,
 /area/corsat/sigma/biodome/scrapyard)
 "ID" = (
@@ -2341,7 +2323,6 @@
 "Ku" = (
 /obj/structure/surface/table/almayer,
 /obj/item/device/flashlight/lamp,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	icon_state = "plate"
 	},
@@ -2349,13 +2330,11 @@
 "Kw" = (
 /obj/structure/surface/table/almayer,
 /obj/item/folder/black_random,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	icon_state = "plate"
 	},
 /area/corsat/sigma/airlock/control)
 "KA" = (
-/obj/effect/landmark/objective_landmark/medium,
 /obj/structure/surface/rack,
 /obj/item/tool/shovel,
 /obj/item/tool/shovel,
@@ -2369,7 +2348,6 @@
 	})
 "KF" = (
 /obj/structure/surface/table/almayer,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	icon_state = "plate"
 	},
@@ -2414,7 +2392,6 @@
 /area/corsat/sigma/airlock/control)
 "Lg" = (
 /obj/structure/surface/table/almayer,
-/obj/structure/machinery/computer/objective,
 /turf/open/floor/corsat{
 	dir = 1;
 	icon_state = "blue"
@@ -2423,7 +2400,6 @@
 "Lr" = (
 /obj/structure/surface/table/almayer,
 /obj/item/device/flashlight/lamp,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	dir = 5;
 	icon_state = "blue"
@@ -2519,7 +2495,6 @@
 "Ns" = (
 /obj/structure/surface/table/almayer,
 /obj/effect/landmark/item_pool_spawner/corsat_bio_lock,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	dir = 4;
 	icon_state = "blue"
@@ -2636,7 +2611,6 @@
 	pixel_y = 5;
 	use_power = 0
 	},
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	dir = 4;
 	icon_state = "blue"
@@ -2685,7 +2659,6 @@
 	pixel_x = -5;
 	use_power = 0
 	},
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	icon_state = "plate"
 	},
@@ -2697,7 +2670,6 @@
 "PZ" = (
 /obj/structure/surface/table/almayer,
 /obj/item/device/flashlight,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	icon_state = "plate"
 	},
@@ -2712,7 +2684,6 @@
 /obj/structure/surface/table/almayer,
 /obj/item/paper_bin,
 /obj/item/tool/pen/red,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	dir = 10;
 	icon_state = "red"
@@ -2740,7 +2711,6 @@
 /obj/item/clipboard,
 /obj/item/paper,
 /obj/item/tool/pen/red,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	icon_state = "blue"
 	},
@@ -2760,7 +2730,6 @@
 "QU" = (
 /obj/structure/surface/table/almayer,
 /obj/item/device/camera,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	dir = 6;
 	icon_state = "blue"
@@ -2775,7 +2744,6 @@
 	dir = 8
 	},
 /obj/structure/closet/firecloset,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	dir = 8;
 	icon_state = "red"
@@ -2838,7 +2806,6 @@
 	pixel_x = 5;
 	use_power = 0
 	},
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	icon_state = "blue"
 	},
@@ -2846,7 +2813,6 @@
 "RD" = (
 /obj/structure/surface/table/reinforced,
 /obj/item/device/flashlight/lamp,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	icon_state = "blue"
 	},
@@ -2896,7 +2862,6 @@
 	})
 "Sm" = (
 /obj/structure/closet/emcloset,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	dir = 8;
 	icon_state = "red"
@@ -3011,7 +2976,6 @@
 	},
 /area/corsat/sigma/airlock/control)
 "Uu" = (
-/obj/effect/landmark/objective_landmark/medium,
 /obj/structure/closet/athletic_mixed,
 /turf/open/floor{
 	dir = 1;
@@ -3034,7 +2998,6 @@
 	})
 "UF" = (
 /obj/effect/decal/mecha_wreckage/hoverpod,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/ice,
 /area/corsat/sigma/biodome/scrapyard)
 "UW" = (
@@ -3117,7 +3080,6 @@
 /area/corsat/inaccessible)
 "VL" = (
 /obj/structure/closet/secure_closet/security,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	dir = 8;
 	icon_state = "red"
@@ -3135,7 +3097,6 @@
 /obj/structure/surface/table/reinforced,
 /obj/structure/machinery/door/window/brigdoor/westleft,
 /obj/structure/machinery/door/window/brigdoor/eastleft,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	icon_state = "plate"
 	},
@@ -3180,7 +3141,6 @@
 "WW" = (
 /obj/item/folder/black_random,
 /obj/structure/surface/table/reinforced,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	dir = 4;
 	icon_state = "red"
@@ -3225,7 +3185,6 @@
 	})
 "XG" = (
 /obj/structure/closet/emcloset,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	icon_state = "plate"
 	},
@@ -3233,7 +3192,6 @@
 "XK" = (
 /obj/structure/machinery/light,
 /obj/structure/closet/firecloset,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	icon_state = "plate"
 	},
@@ -3298,7 +3256,6 @@
 /obj/effect/landmark{
 	name = "surv_spawn"
 	},
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/ice,
 /area/corsat/sigma/biodome/scrapyard)
 "YF" = (
@@ -3347,12 +3304,10 @@
 /area/corsat/sigma/airlock/control)
 "YX" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat,
 /area/corsat/emergency_access)
 "Zd" = (
 /obj/structure/machinery/photocopier,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	dir = 4;
 	icon_state = "red"
@@ -3398,7 +3353,6 @@
 /obj/structure/surface/table/almayer,
 /obj/item/storage/donut_box,
 /obj/item/tool/lighter/random,
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/corsat{
 	dir = 10;
 	icon_state = "red"

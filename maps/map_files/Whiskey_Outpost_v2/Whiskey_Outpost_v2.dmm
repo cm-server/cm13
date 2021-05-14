@@ -1823,7 +1823,6 @@
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/device/mass_spectrometer,
 /obj/item/reagent_container/hypospray,
 /turf/open/floor{
 	dir = 5;

@@ -194,7 +194,6 @@
 /area/bigredv2/outside/space_port)
 "aB" = (
 /obj/structure/filingcabinet,
-/obj/item/document_objective/report,
 /turf/open/floor{
 	dir = 4;
 	icon_state = "darkgreen2";

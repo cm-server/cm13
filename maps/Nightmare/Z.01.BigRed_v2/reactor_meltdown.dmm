@@ -43,7 +43,6 @@
 /area/bigredv2/outside/engineering)
 "al" = (
 /obj/structure/surface/table,
-/obj/item/document_objective/folder,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "am" = (
@@ -115,7 +114,6 @@
 "aB" = (
 /obj/structure/surface/table,
 /obj/item/tool/lighter/random,
-/obj/item/disk/objective,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "aC" = (
@@ -406,7 +404,6 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bw" = (
-/obj/item/document_objective/paper,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bx" = (
@@ -510,7 +507,6 @@
 /area/bigredv2/outside/engineering)
 "bQ" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/document_objective/folder,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bR" = (
@@ -573,7 +569,6 @@
 /obj/structure/surface/table,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/tool/pen,
-/obj/item/disk/objective,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "ca" = (

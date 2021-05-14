@@ -23611,7 +23611,6 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bte" = (
-/obj/effect/landmark/objective_landmark,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "btj" = (
@@ -30889,7 +30888,6 @@
 /area/bigredv2/outside/engineering)
 "onu" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/objective_landmark,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -32716,7 +32714,6 @@
 	},
 /area/bigredv2/caves/eta/living)
 "tSL" = (
-/obj/effect/landmark/objective_landmark,
 /turf/open/mars_cave{
 	icon_state = "mars_cave_2";
 	tag = "icon-mars_cave_2"

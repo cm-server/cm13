@@ -689,7 +689,6 @@
 /area/bigredv2/outside/office_complex)
 "cd" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/device/mass_spectrometer/adv/objective,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -904,7 +903,6 @@
 	dir = 4;
 	layer = 2.4
 	},
-/obj/item/device/healthanalyzer/objective,
 /turf/open/floor{
 	icon_state = "dark"
 	},
@@ -1250,7 +1248,6 @@
 /area/bigredv2/outside/office_complex)
 "dI" = (
 /obj/structure/surface/rack,
-/obj/item/disk/objective,
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin15";
 	icon_state = "rasputin15"
@@ -1489,7 +1486,6 @@
 "qX" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/corpsespawner/PMC,
-/obj/item/disk/objective,
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin3";
 	icon_state = "rasputin3"
@@ -1498,7 +1494,6 @@
 "rF" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/corpsespawner/PMC,
-/obj/item/document_objective/folder,
 /turf/open/shuttle/dropship{
 	tag = "icon-rasputin3";
 	icon_state = "rasputin3"

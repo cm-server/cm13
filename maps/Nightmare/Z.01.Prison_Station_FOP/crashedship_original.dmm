@@ -1382,7 +1382,6 @@
 	icon_state = "intact-scrubbers";
 	dir = 4
 	},
-/obj/item/document_objective/paper,
 /turf/open/floor/plating,
 /area/prison/cellblock/highsec/south/south)
 "cH" = (
@@ -3285,7 +3284,6 @@
 /obj/structure/machinery/light/small{
 	dir = 8
 	},
-/obj/item/device/mass_spectrometer/adv/objective,
 /turf/open/shuttle{
 	icon_state = "floor7"
 	},
@@ -4913,7 +4911,6 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/cellblock/highsec/south/south)
 "jB" = (
-/obj/item/document_objective/paper,
 /turf/open/floor/prison{
 	tag = "icon-floor_plate (SOUTHWEST)";
 	icon_state = "floor_plate";

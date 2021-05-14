@@ -84,11 +84,8 @@ SUBSYSTEM_DEF(objectives)
 	for(var/i=0;i<experimental_devices;i++)
 		var/dest = pick(10;"close", 20;"medium", 40;"far", 30;"science")
 		var/ex_dev = pick(
-			/obj/item/device/mass_spectrometer/adv/objective,
-			/obj/item/device/reagent_scanner/adv/objective,
-			/obj/item/device/healthanalyzer/objective,
-			/obj/item/device/autopsy_scanner/objective,
-		)
+						/obj/item/device/reagent_scanner/adv/objective,
+								)
 		spawn_objective_at_landmark(dest, ex_dev)
 
 	//Research
