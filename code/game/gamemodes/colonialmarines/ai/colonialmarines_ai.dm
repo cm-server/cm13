@@ -340,9 +340,13 @@ GLOBAL_LIST_INIT(t3_ais, list(
 
 	var/list/possible_spawners = GLOB.xeno_ai_spawns.Copy()
 
-	for(var/i in GLOB.alive_client_human_list)
-		for(var/l in possible_spawners)
-			if(get_dist(i, l) < MIN_RANGE_TO_SPAWN_XENO)
+	for(var/mob/living/carbon/human/player as anything in GLOB.alive_client_human_list)
+		var/turf/player_turf = get_turf(player)
+		if(!player_turf.z)
+			continue
+
+		for(var/obj/effect/landmark/xeno_ai/XA as anything in possible_spawners)
+			if(player_turf.z == XA.z && get_dist(player_turf, XA) < MIN_RANGE_TO_SPAWN_XENO)
 				possible_spawners -= l
 
 	for(var/group in groups)
