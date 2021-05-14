@@ -28,10 +28,6 @@
 
 /datum/pointshop/ui_data(mob/user)
 	. = list()
-	.["points"] = points
-
-/datum/pointshop/ui_static_data(mob/user)
-	. = list()
 	.["products"] = list()
 	var/index = 1
 	for(var/i in products)
@@ -40,6 +36,10 @@
 		L["index"] = index
 		.["products"] += list(L)
 		index++
+	.["points"] = points
+
+/datum/pointshop/ui_static_data(mob/user)
+	. = list()
 	.["currency"] = currency
 	.["theme"] = theme
 
@@ -54,6 +54,7 @@
 	if(!ui)
 		ui = new(user, src, "Pointshop", attached_object.name)
 		ui.open()
+		ui.set_autoupdate(FALSE)
 
 
 /datum/pointshop/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -79,6 +80,7 @@
 	var/icon = 'icons/effects/pointshop.dmi'
 	var/icon_state = ""
 	var/cost = 0
+	var/purchased = FALSE
 	var/abstract_type = /datum/pointshop_product
 	var/datum/pointshop/parent
 
@@ -88,7 +90,8 @@
 		"desc" = desc,
 		"cost" = cost,
 		"category" = category,
-		"image" = replacetext(name, " ", "-")
+		"image" = replacetext(name, " ", "-"),
+		"purchased" = purchased
 	)
 
 /datum/pointshop_product/New(datum/pointshop/P)
@@ -113,6 +116,8 @@
 	return TRUE
 
 /datum/pointshop_product/proc/purchase_product(var/mob/user)
+	if(purchased)
+		return
 	if(!try_purchase_product(user))
 		return
 	return TRUE
@@ -180,22 +185,22 @@
 
 	var/turf/T = get_turf(target)
 	if(T.density)
-		to_chat(M, SPAN_WARNING("Launched failed! Target location blocked!"))
+		to_chat(M, SPAN_WARNING("Launch failed! Target location blocked!"))
 		return
 
 	for(var/i in T)
 		var/atom/A = i
 		if(A.density)
-			to_chat(M, SPAN_WARNING("Launched failed! Target location blocked!"))
+			to_chat(M, SPAN_WARNING("Launch failed! Target location blocked!"))
 			return
 
 	var/area/A = T.loc
 	if(A.flags_area & AREA_INACCESSIBLE)
-		to_chat(M< SPAN_WARNING("Launched failed! Invalid target location!"))
+		to_chat(M< SPAN_WARNING("Launch failed! Invalid target location!"))
 		return
 
 	if(!try_purchase_product(M))
-		to_chat(M, SPAN_WARNING("Launched failed! Failed to purchase [name]!"))
+		to_chat(M, SPAN_WARNING("Launch failed! Failed to purchase [name]!"))
 		return
 
 	launch(T)

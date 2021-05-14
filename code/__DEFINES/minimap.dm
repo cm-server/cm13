@@ -1,0 +1,6 @@
+#define MINIMAP_FILE_DIR "maps/minimaps/"
+
+#define MINIMAP_FLAG_SHOW_MARINE (1<<0)
+#define MINIMAP_FLAG_SHOW_CP (1<<1)
+#define MINIMAP_FLAG_SHOW_XENO (1<<2)
+#define MINIMAP_FLAG_SHOW_LOOT (1<<3)
