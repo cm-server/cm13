@@ -3,9 +3,10 @@
 import os
 import sys
 
-folders = ["maps/interiors", "maps/Nightmare", "maps/predship"]
+folders = ["_maps/RandomRuins", "_maps/RandomZLevels", "_maps/shuttles",
+           "_maps/templates"]
 
-generated = "maps/templates.dm"
+generated = "_maps/templates.dm"
 
 template_filenames = []
 
@@ -15,7 +16,7 @@ def find_dm(path):
         for name in filenames:
             if name.endswith(".dmm"):
                 s = os.path.join(dirpath, name)
-                s = s.replace("maps/","")
+                s = s.replace("_maps/","")
                 L.append(s)
     return L
 
