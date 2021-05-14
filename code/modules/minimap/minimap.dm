@@ -174,6 +174,9 @@ GLOBAL_LIST_INIT(jobs_to_icon, list(
 	.["icon_size"] = icon_size
 
 /datum/game_map/tgui_interact(mob/user, datum/tgui/ui, map = FALSE)
+	if(!generated_map)
+		return
+
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		if(map)
