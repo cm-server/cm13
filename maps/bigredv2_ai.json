@@ -1,6 +1,6 @@
 {
     "map_name": "Solaris Ridge AI",
-    "map_path": "BigRed",
+    "map_path": "map_files/BigRed",
     "map_file": "BigRed_AI.dmm",
     "survivor_types": [
         "Survivor - Scientist",

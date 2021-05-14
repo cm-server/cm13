@@ -3,8 +3,8 @@
 import os
 import sys
 
-folders = ["maps/interiors", "maps/Nightmare", "maps/predship",
-           "maps/templates"]
+folders = ["maps/interiors", "maps/map_files", "maps/predship",
+           "maps/templates", "maps/shuttles"]
 
 generated = "maps/templates.dm"
 
