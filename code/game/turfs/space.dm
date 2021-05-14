@@ -10,6 +10,7 @@
 	icon_state = "0"
 	can_bloody = FALSE
 	layer = UNDER_TURF_LAYER
+	flags_turf = TURF_MINIMAP_HIDE
 
 /turf/open/space/basic/New()	//Do not convert to Initialize
 	//This is used to optimize the map loader

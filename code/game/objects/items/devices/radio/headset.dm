@@ -218,6 +218,28 @@
 	T.enter_mob(usr)
 */
 
+/obj/item/device/radio/headset/almayer/verb/view_minimap()
+	set name = "Open Minimap"
+	set category = "Object.Minimap"
+	set src in usr
+
+	var/datum/game_map/target_map
+	var/turf/T = get_turf(loc)
+	if(!T)
+		to_chat(usr, SPAN_NOTICE("[icon2html(src)] Unable to determine your current location!"))
+		return
+
+	for(var/datum/game_map/potential_map as anything in SSminimap.minimaps)
+		if(potential_map.zlevel.z_value == T.z)
+			target_map = potential_map
+			break
+
+	if(!target_map)
+		to_chat(usr, SPAN_NOTICE("[icon2html(src)] Unable to find a map for the current area you are in!"))
+		return
+
+	target_map.tgui_interact(usr)
+
 /obj/item/device/radio/headset/almayer/equipped(mob/living/carbon/human/user, slot)
 	if(slot == WEAR_EAR)
 		if(headset_hud_on)

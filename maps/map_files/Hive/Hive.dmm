@@ -60,7 +60,7 @@
 	},
 /area/bigredv2/outside/unknown)
 "jA" = (
-/turf/closed/shuttle{
+/turf/closed/wall/indestructible{
 	dir = 1;
 	icon_state = "pwall"
 	},

@@ -9,6 +9,7 @@
 	density = 1
 	throwpass = 0
 	layer = DOOR_OPEN_LAYER
+	flags_atom = SHOW_ON_MINIMAP
 	var/open_layer = DOOR_OPEN_LAYER
 	var/closed_layer = DOOR_CLOSED_LAYER
 	var/id = ""

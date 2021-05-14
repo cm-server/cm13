@@ -23,7 +23,7 @@
     "monkey_types": [
         "neaera"
 	],
-	"traits": [{ "Ground": true }],
+	"traits": [{ "Ground": true, "Minimap": true }],
     "force_mode": "Distress Signal: Lowpop",
     "ship_map": "Outpost Alpha"
 }

@@ -206,6 +206,7 @@
 	name = "wall"
 	icon_state = "wall1"
 	icon = 'icons/turf/shuttle.dmi'
+	flags_turf = TURF_MINIMAP_HIDE
 
 /turf/closed/shuttle/dropship
 	icon = 'icons/turf/walls/walls.dmi'

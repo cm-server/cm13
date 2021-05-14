@@ -232,4 +232,4 @@ AUTOOOCMUTE
 GAMEMODE_ROUNDS_NEEDED 5
 
 ## Default gamemode to auto-switch back to after a round has concluded
-GAMEMODE_DEFAULT extended
+GAMEMODE_DEFAULT Distress Beacon: Lowpop

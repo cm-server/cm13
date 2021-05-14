@@ -180,6 +180,20 @@
 	..()
 
 
+/datum/asset/simple/minimap
+	var/name = "minimap"
+
+/datum/asset/simple/minimap/register()
+	for(var/datum/game_map/GM as anything in SSminimap.minimaps)
+		var/asset = GM.generated_map
+		if (!asset)
+			continue
+		asset = fcopy_rsc(asset) //dedupe
+		var/asset_name = sanitize_filename("minimap.[GM.name].png")
+		var/datum/asset_cache_item/ACI = SSassets.transport.register_asset(asset_name, asset)
+		ACI.keep_local_name = TRUE
+		assets[asset_name] = ACI
+
 /datum/asset/spritesheet/choose_resin
 	name = "chooseresin"
 

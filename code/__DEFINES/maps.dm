@@ -33,6 +33,7 @@ require only minor tweaks.
 #define ZTRAIT_FOG "Fog"
 #define ZTRAIT_LOCKDOWN "Lockdown"
 #define ZTRAIT_BASIC_RT "BasicRT"
+#define ZTRAIT_HAS_MINIMAP "Minimap"
 
 // boolean - weather types that occur on the level
 #define ZTRAIT_SNOWSTORM "weather_snowstorm"
@@ -64,12 +65,12 @@ require only minor tweaks.
 
 // default trait definitions, used by SSmapping
 #define ZTRAITS_MAIN_SHIP list(ZTRAIT_MARINE_MAIN_SHIP = TRUE)
-#define ZTRAITS_GROUND list(ZTRAIT_GROUND = TRUE)
+#define ZTRAITS_GROUND list(ZTRAIT_GROUND = TRUE, ZTRAIT_HAS_MINIMAP = TRUE)
 #define ZTRAITS_ADMIN list(ZTRAIT_ADMIN = TRUE)
 #define ZTRAITS_LOWORBIT list(ZTRAIT_LOWORBIT = TRUE)
 #define ZTRAITS_SPACE list(ZTRAIT_LINKAGE = CROSSLINKED, ZTRAIT_SPACE_RUINS = TRUE)
 #define ZTRAITS_INTERIORS list(ZTRAIT_INTERIORS = TRUE)
-#define ZTRAITS_HIVE list(ZTRAIT_HIVE = TRUE)
+#define ZTRAITS_HIVE list(ZTRAIT_HIVE = TRUE, ZTRAIT_HAS_MINIMAP = TRUE)
 
 #define DL_NAME "name"
 #define DL_TRAITS "traits"

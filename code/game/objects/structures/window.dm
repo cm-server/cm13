@@ -6,7 +6,7 @@
 	density = 1
 	anchored = 1
 	layer = WINDOW_LAYER
-	flags_atom = ON_BORDER|FPRINT
+	flags_atom = ON_BORDER|FPRINT|SHOW_ON_MINIMAP
 	health = 15
 	var/state = 2
 	var/reinf = 0
@@ -352,7 +352,7 @@
 	..()
 
 /obj/structure/window/phoronbasic/full
-	flags_atom = FPRINT
+	flags_atom = FPRINT|SHOW_ON_MINIMAP
 	icon_state = "phoronwindow0"
 	basestate = "phoronwindow"
 	legacy_full = TRUE
@@ -370,7 +370,7 @@
 	return
 
 /obj/structure/window/phoronreinforced/full
-	flags_atom = FPRINT
+	flags_atom = FPRINT|SHOW_ON_MINIMAP
 	icon_state = "phoronrwindow0"
 	basestate = "phoronrwindow"
 	legacy_full = TRUE
@@ -427,7 +427,7 @@
 	return ..()
 
 /obj/structure/window/reinforced/full
-	flags_atom = FPRINT
+	flags_atom = FPRINT|SHOW_ON_MINIMAP
 	icon_state = "rwindow0"
 	basestate = "rwindow"
 	legacy_full = TRUE
@@ -440,13 +440,13 @@
 	basestate = "window"
 	health = 40
 	reinf = 1
-	flags_atom = FPRINT
+	flags_atom = FPRINT|SHOW_ON_MINIMAP
 
 /obj/structure/window/shuttle/update_icon() //icon_state has to be set manually
 	return
 
 /obj/structure/window/full
-	flags_atom = FPRINT
+	flags_atom = FPRINT|SHOW_ON_MINIMAP
 	icon_state = "window0"
 	basestate = "window"
 	legacy_full = TRUE
@@ -459,7 +459,7 @@
 	name = "theoretical window"
 	layer = TABLE_LAYER
 	static_frame = 1
-	flags_atom = FPRINT
+	flags_atom = FPRINT|SHOW_ON_MINIMAP
 	var/window_frame //For perspective windows,so the window frame doesn't magically dissapear
 	var/list/tiles_special = list(/obj/structure/machinery/door/airlock,
 		/obj/structure/window/framed,

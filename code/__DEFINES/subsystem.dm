@@ -50,11 +50,11 @@
 
 #define SS_INIT_TICKER_SPAWN       999
 #define SS_INIT_INPUT              85
-#define SS_INIT_RUST               26
-#define SS_INIT_SUPPLY_SHUTTLE     25
-#define SS_INIT_GARBAGE            24
-#define SS_INIT_JOB                23
-#define SS_INIT_MAPPING            22
+#define SS_INIT_RUST               27
+#define SS_INIT_SUPPLY_SHUTTLE     26
+#define SS_INIT_GARBAGE            25
+#define SS_INIT_JOB                24
+#define SS_INIT_MAPPING            23
 #define SS_INIT_PLANT              21.5
 #define SS_INIT_HUMANS             21
 #define SS_INIT_MAP                20
@@ -81,18 +81,17 @@
 #define SS_INIT_RADIO				2
 #define SS_INIT_TIMER              100
 #define SS_INIT_UNSPECIFIED        0
+#define SS_INIT_MINIMAP -5
 #define SS_INIT_EMERGENCY_SHUTTLE -19
 #define SS_INIT_ASSETS            -20
 #define SS_INIT_VOTE			  -23
 #define SS_INIT_FINISH            -24
-#define SS_INIT_MINIMAP           -25
 #define SS_INIT_ADMIN             -26
 #define SS_INIT_DATABASE		  -27
 #define SS_INIT_ENTITYMANAGER	  -28
 #define SS_INIT_PLAYTIME    	  -29
 #define SS_INIT_PREDSHIPS         -30
 #define SS_INIT_OBJECTIVES        -31
-#define SS_INIT_MAPVIEW           -32
 #define SS_INIT_LOBBYART          -33
 #define SS_INIT_STATPANELS			-98
 #define SS_INIT_CHAT			   -100 //Should be last to ensure chat remains smooth during init.
@@ -103,10 +102,10 @@
 #define SS_PRIORITY_TICKER         200
 #define SS_PRIORITY_XENO_AI        185
 #define SS_PRIORITY_NIGHTMARE      180
-#define SS_PRIORITY_MAPVIEW		   170
 #define SS_PRIORITY_QUADTREE       160
 #define SS_PRIORITY_CHAT		   155
 #define SS_PRIORITY_STATPANEL	   154
+#define SS_PRIORITY_MINIMAP 152
 #define SS_PRIORITY_CELLAUTO       151
 #define SS_PRIORITY_MOB            150
 #define SS_PRIORITY_XENO           149

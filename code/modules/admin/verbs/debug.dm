@@ -507,6 +507,29 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	message_staff("[key_name_admin(usr)] assumed direct control of [M].")
 
+/client/proc/generate_minimaps()
+	set name = "Generate Minimaps for a loaded map"
+	set category = "Debug"
+
+	if(!check_rights(R_DEBUG))
+		return
+
+	var/list/minimaps = list()
+	for(var/datum/game_map/M as anything in SSminimap.minimaps)
+		minimaps[M.name] = M
+
+	var/result = tgui_input_list(usr, "Select map", "Select map", minimaps)
+	if(!result)
+		return
+
+	var/datum/game_map/map_to_generate = minimaps[result]
+
+	if(tgui_alert(usr, "Are you sure you want to do this? This could lag the server for a considerable amount of time!", "Confirmation", list("Yes", "No")) == "No")
+		return
+
+	map_to_generate.generate_map()
+
+
 /client/proc/cmd_debug_list_processing_items()
 	set category = "Debug.Controllers"
 	set name = "List Processing Items"

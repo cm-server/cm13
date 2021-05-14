@@ -436,3 +436,4 @@
 
 #define SET_THREAT(C, T) C.set_queued_music(GLOB.danger_music[max(min(T, length(GLOB.danger_music)), 1)])\
 
+#define MINIMAP_FILE_DIR "maps/minimaps/"
