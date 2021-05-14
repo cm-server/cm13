@@ -355,8 +355,8 @@
 
 /datum/equipment_preset/uscm/private_equipped/alpha/load_gear(mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/alpha(H), WEAR_EAR)
+	. =..()
 	H.equip_to_slot_or_del(new /obj/item/clothing/accessory/health/scrap(H), WEAR_ACCESSORY)
-	return ..()
 
 
 //*****************************************************************************************************/

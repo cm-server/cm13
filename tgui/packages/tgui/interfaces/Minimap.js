@@ -9,13 +9,15 @@ export const Minimap = (props, context) => {
     map_size_x,
     map_size_y,
     icon_size,
-    player_data,
+    coord_data,
     player_coord,
-    player_name,
+    player_ref,
     player_viewsize = 36,
   } = data;
 
   const [selectedName, setSelectedName] = useLocalState(context, "selected_name", null);
+
+  const minimapPadding = 10;
 
   const map_size_tile_x = (map_size_x/icon_size);
   const map_size_tile_y = (map_size_y/icon_size);
@@ -47,12 +49,13 @@ export const Minimap = (props, context) => {
 
   return (
     <Window
-      width={icon_size*player_viewsize + 25}
-      height={icon_size*player_viewsize + 50}
+      width={icon_size*player_viewsize + minimapPadding*2}
+      height={icon_size*player_viewsize + minimapPadding*2 + 30}
       theme="engi"
+      resizable={false}
     >
       <Window.Content id="minimap">
-        <Stack justify="space-around">
+        <Stack>
           <Stack.Item>
             <Box
               className="Minimap__Map"
@@ -64,19 +67,26 @@ export const Minimap = (props, context) => {
                 'width': `${icon_size*player_viewsize}px`,
                 'height': `${icon_size*player_viewsize}px`,
               }}
+              position="absolute"
+              left={`${minimapPadding}px`}
+              top={`${minimapPadding}px`}
               onClick={() => setSelectedName(null)}
             >
-              {player_data.map(val => {
-                let p_coord = val.coord;
-                if (val.name === player_name) p_coord = player_coord;
-                const local_coord = globalToLocal(p_coord);
+              {coord_data.map(val => {
+                let object_coord = val.coord;
+                if (val.ref === player_ref) object_coord = player_coord;
+                const local_coord = globalToLocal(object_coord);
                 if (!local_coord) return;
                 return (
-                  <Player
-                    key={val.name}
-                    player_name={val.name}
-                    player_coord={local_coord}
-                    player_icon={val.icon}
+                  <Object
+                    key={val.ref}
+                    name={val.name}
+                    coord={local_coord}
+                    icon={val.icon}
+                    color={val.color}
+                    obj_ref={val.ref}
+                    obj_width={val.width}
+                    obj_height={val.height}
                   />
                 );
               })}
@@ -88,30 +98,40 @@ export const Minimap = (props, context) => {
   );
 };
 
-export const Player = (props, context) => {
+export const Object = (props, context) => {
   const { data } = useBackend(context);
   const { icon_size } = data;
   const {
-    player_name,
-    player_coord,
-    player_icon,
+    name,
+    coord,
+    icon,
+    color,
+    obj_ref,
+    obj_width,
+    obj_height,
     ...rest
   } = props;
 
   const [selectedName, setSelectedName] = useLocalState(context, "selected_name", null);
+  let object_opacity = 1;
+
+  if (selectedName && selectedName !== obj_ref) {
+    object_opacity = 0.4;
+  }
 
   return (
     <Box
       className="Minimap__Player"
+      opacity={object_opacity}
       width="10%"
       onClick={e => {
-        setSelectedName(player_name);
+        setSelectedName(obj_ref);
         e.stopPropagation();
       }}
       {...rest}
       position="absolute"
-      left={`${player_coord[0]+icon_size/2}px`}
-      top={`${player_coord[1]+icon_size}px`}
+      left={`${coord[0]-icon_size}px`}
+      top={`${coord[1]-((obj_height-1)*icon_size)}px`}
     >
       <Stack vertical fill>
         <Stack.Item>
@@ -119,27 +139,34 @@ export const Player = (props, context) => {
             as="span"
             className="Minimap__Player_Icon"
             position="absolute"
-            backgroundColor="white"
-            width={`${icon_size}px`}
-            height={`${icon_size}px`}
+            backgroundColor={color}
+            width={`${icon_size*obj_width}px`}
+            height={`${icon_size*obj_height}px`}
           />
         </Stack.Item>
-        <Stack.Item ml={`${icon_size}px`} mt={`${icon_size}px`}>
+        <Stack.Item
+          className="Minimap__InfoBox"
+          ml={selectedName === obj_ref
+            ? `${icon_size*obj_width}px`
+            : `${(icon_size*obj_width)/2}px`}
+          mt={selectedName === obj_ref
+            ? `${icon_size*obj_height}px`
+            : `${(obj_height-1)*icon_size}px`}>
           <Box
             position="absolute"
             px={1}
             py={1}
             className={`Minimap__InfoBox${
-              selectedName === player_name? "--detailed" : ""}`}
+              selectedName === obj_ref? "--detailed" : ""}`}
           >
             <Stack>
-              {selectedName === player_name && (
+              {selectedName === obj_ref && (
                 <Stack.Item>
-                  <Icon name={player_icon} />
+                  <Icon name={icon} />
                 </Stack.Item>
               )}
               <Stack.Item>
-                {player_name}
+                {name}
               </Stack.Item>
             </Stack>
           </Box>

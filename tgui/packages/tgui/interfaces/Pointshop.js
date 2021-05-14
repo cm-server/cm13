@@ -97,7 +97,7 @@ const GeneralPanel = (props, context) => {
                     lineHeight="4em"
                     selected={selectedProduct === val.index}
                     onClick={() => setSelectedProduct(val.index)}
-                    color={points < val.cost? "red" : "white"}
+                    color={val.purchased? "green" : points < val.cost? "red" : "white"}
                   >
                     <Stack align="center">
                       <Stack.Item>
@@ -114,15 +114,19 @@ const GeneralPanel = (props, context) => {
                           {val.name}
                         </Box>
                       </Stack.Item>
-                      <Stack.Divider />
-                      <Stack.Item mr={1}>
-                        <Box
-                          textAlign="right"
-                          color={points < val.cost? "red" : "white"}
-                        >
-                          {val.cost} {currency}
-                        </Box>
-                      </Stack.Item>
+                      {!val.purchased && (
+                        <>
+                          <Stack.Divider />
+                          <Stack.Item mr={1}>
+                            <Box
+                              textAlign="right"
+                              color={points < val.cost? "red" : "white"}
+                            >
+                              {val.cost} {currency}
+                            </Box>
+                          </Stack.Item>
+                        </>
+                      )}
                     </Stack>
                   </Tabs.Tab>
                 );
@@ -141,13 +145,15 @@ const GeneralPanel = (props, context) => {
               </Box>
             </Stack.Item>
             <Stack.Item>
-              <Button
-                content="Purchase"
-                color={points < products[selectedProduct-1].cost? "bad" : "good"}
-                fluid
-                textAlign="center"
-                onClick={() => act("purchase", { index_to_purchase: selectedProduct })}
-              />
+              {!products[selectedProduct-1].purchased && (
+                <Button
+                  content="Purchase"
+                  color={points < products[selectedProduct-1].cost? "bad" : "good"}
+                  fluid
+                  textAlign="center"
+                  onClick={() => act("purchase", { index_to_purchase: selectedProduct })}
+                />
+              )}
             </Stack.Item>
           </>
         )}

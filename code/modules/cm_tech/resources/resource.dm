@@ -43,6 +43,8 @@
 /obj/structure/resource_node/area_controller
 	is_area_controller = TRUE
 
+GLOBAL_LIST_EMPTY_TYPED(resource_nodes, /obj/structure/resource_node)
+
 /obj/structure/resource_node/Initialize(mapload, var/play_ambient_noise = TRUE)
 	. = ..()
 	bound_width = width * world.icon_size
@@ -63,11 +65,14 @@
 		controlled_area = A
 		A.r_node = src
 
+	GLOB.resource_nodes += src
+
 /obj/structure/resource_node/Destroy()
 	if(tree)
 		tree.on_node_lost(src)
 
 	SStechtree.resources.Remove(src)
+	GLOB.resource_nodes -= src
 
 	return ..()
 

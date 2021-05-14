@@ -451,6 +451,10 @@ cases. Override_icon_state should be a list.*/
 				if(!(flags_equip_slot & SLOT_ICLOTHING))
 					return FALSE
 				return 1
+			if(WEAR_ACCESSORY)
+				if(!H.w_uniform)
+					return FALSE
+				return TRUE
 			if(WEAR_ID)
 				if(H.wear_id)
 					return FALSE

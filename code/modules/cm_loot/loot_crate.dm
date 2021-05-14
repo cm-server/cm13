@@ -9,6 +9,12 @@
 	/// Loot table used to determine what a box can give depending on what the dice roll comes out on.
 	var/datum/loot_table/possible_items
 
+GLOBAL_LIST_EMPTY_TYPED(loot_crates, /obj/structure/closet/crate/loot)
+
+/obj/structure/closet/crate/loot/Initialize()
+	. = ..()
+	GLOB.loot_crates += src
+
 // Can't close loot crates, they stay open once open.
 /obj/structure/closet/crate/loot/can_close()
 	return FALSE
@@ -29,6 +35,7 @@
 
 /obj/structure/closet/crate/loot/Destroy()
 	possible_items = null
+	GLOB.loot_crates -= src
 	return ..()
 
 GLOBAL_LIST_EMPTY_TYPED(loot_landmarks, /obj/effect/landmark/loot_landmark)
