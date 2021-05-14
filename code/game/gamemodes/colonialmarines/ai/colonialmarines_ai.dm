@@ -347,7 +347,7 @@ GLOBAL_LIST_INIT(t3_ais, list(
 
 		for(var/obj/effect/landmark/xeno_ai/XA as anything in possible_spawners)
 			if(player_turf.z == XA.z && get_dist(player_turf, XA) < MIN_RANGE_TO_SPAWN_XENO)
-				possible_spawners -= l
+				possible_spawners -= XA
 
 	for(var/group in groups)
 		var/list/spawners_nearby = list()
